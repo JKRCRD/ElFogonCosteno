@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sobre Nosotros</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>El Fogón Costeño - Sobre Nosotros</h1>
+    </header>
+    <nav>
+        <a href="index.html">Info</a>
+        <a href="menu.html">Productos</a>
+        <a href="compras.html" class="cart-notification">Compras<span id="cart-count" class="notification-number">0</span></a>
+        <a href="sobre-nosotros.html" class="active">Sobre Nosotros</a>
+        <a href="contactanos.html">Contáctanos</a>
+    </nav>
+    <script>
+        // Función para actualizar la cuenta del carrito en la barra de navegación
+        function actualizarCarrito() {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const cartCountElement = document.getElementById('cart-count');
+            cartCountElement.textContent = carrito.length;
+        }
+
+        // Llamamos a la función para que la cuenta esté actualizada al cargar la página
+        actualizarCarrito();
+
+        // Función para agregar productos al carrito
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const producto = this.getAttribute('data-producto');
+                
+                // Obtener los productos del carrito del localStorage
+                let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+                // Agregar el nuevo producto
+                carrito.push(producto);
+
+                // Guardar de nuevo en localStorage
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+
+                // Actualizar la cuenta del carrito
+                actualizarCarrito();
+
+                alert(producto + " ha sido agregado al carrito.");
+            });
+        });
+    </script>
+    <div class="container">
+        <h2>Nuestra Historia</h2>
+        <p>Somos un equipo apasionado por compartir los sabores auténticos de Ecuador con el mundo. Nos especializamos en preparar y servir platos típicos, hechos con los mejores ingredientes locales.</p>
+        
+        <h2>Nuestra Misión</h2>
+        <p>Difundir la riqueza culinaria de Ecuador y brindar una experiencia memorable a cada cliente a través de nuestros platos tradicionales.</p>
+        <p>Buscamos utilizar ingredientes frescos y de calidad, apoyando a los agricultores locales y promoviendo la sostenibilidad en nuestra cadena de suministro.</p>
+        
+        <h2>Nuestra Visión</h2>
+        <p>Convertirnos en un referente en la gastronomía ecuatoriana, reconocido por la autenticidad de nuestros sabores y el excelente servicio al cliente.</p>
+        <p>Aspiramos a expandir nuestro impacto cultural y gastronómico, llevando nuestros platos a más comunidades y fomentando el aprecio por la cocina tradicional ecuatoriana.</p>
+        
+        <h2>Valores</h2>
+        <ul>
+            <li><strong>Calidad:</strong> Nos comprometemos a ofrecer solo lo mejor en cada plato.</li>
+            <li><strong>Tradición:</strong> Respetamos y honramos las recetas y técnicas culinarias que nos han sido transmitidas.</li>
+            <li><strong>Sostenibilidad:</strong> Fomentamos prácticas que protejan nuestro medio ambiente y apoyen a la economía local.</li>
+            <li><strong>Comunidad:</strong> Valoramos a nuestros clientes y a la comunidad, buscando siempre una conexión auténtica.</li>
+        </ul>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>Email: info@platos-tips.com</p>
+                <p>Teléfono: +593 123 456 789</p>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos en Redes Sociales</h4>
+                <ul class="social-links">
+                    <li><a href="https://www.facebook.com/tuemprendimiento" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/tuemprendimiento" target="_blank">Instagram</a></li>
+                    <li><a href="https://www.twitter.com/tuemprendimiento" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <p>&copy; 2024 Platos Típicos de Ecuador. Todos los derechos reservados.</p>
+                <p><a href="politica-privacidad.html">Política de Privacidad</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Productos - Platos Típicos del Ecuador</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>El Fogón Costeño - Productos</h1>
+    </header>
+    <nav>
+        <a href="index.html">Info</a>
+        <a href="menu.html" class="active">Productos</a>
+        <a href="compras.html" class="cart-notification">Compras<span id="cart-count" class="notification-number">0</span></a>
+        <a href="sobre-nosotros.html">Sobre Nosotros</a>
+        <a href="contactanos.html">Contáctanos</a>
+    </nav>
+    <div class="container">
+        <h2>Nuestros Platos</h2>
+        <div class="options-container">
+            <div class="option">
+                <img src="img/ceviche_camaron.png" alt="Ceviche de Camaron">
+                <h4>Ceviche de Camaron</h4>
+                <li>Delicioso ceviche de camarón fresco marinado en jugo de limón, con cebolla, tomate y cilantro.</li>
+                <button class="add-to-cart" data-producto="Ceviche de Camaron">Agregar al Carrito</button>
+            </div>
+            <div class="option">
+                <img src="img/encebollado.png" alt="Encebollado">
+                <h4>Encebollado</h4>
+                <li>Tradicional sopa ecuatoriana con atún, yuca y cebolla roja encurtida, llena de sabor y perfecta para cualquier momento del día.</li>
+                <button class="add-to-cart" data-producto="Encebollado">Agregar al Carrito</button>
+            </div>
+            <div class="option">
+                <img src="img/bolon_verde.png" alt="Bolón de Verde">
+                <h4>Bolón de Verde</h4>
+                <li>Bolas de plátano verde rellenas de queso o chicharrón, crujientes por fuera y suaves por dentro.</li>
+                <button class="add-to-cart" data-producto="Bolón de Verde">Agregar al Carrito</button>
+            </div>
+            <div class="option">
+                <img src="img/tigrillo.png" alt="Tigrillo">
+                <h4>Tigrillo</h4>
+                <li>Mezcla de plátano verde triturado con queso, huevo y cebolla, una combinación deliciosa y nutritiva.</li>
+                <button class="add-to-cart" data-producto="Tigrillo">Agregar al Carrito</button>
+            </div>
+            <div class="option">
+                <img src="img/crema-de-cangrejos.png" alt="Crema de Cangrejo">
+                <h4>Crema de Cangrejo</h4>
+                <li>Suave crema de cangrejo con un toque de especias y hierbas, perfecta para calentar el alma.</li>
+                <button class="add-to-cart" data-producto="Crema de Cangrejo">Agregar al Carrito</button>
+            </div>
+            <div class="option">
+                <img src="img/ceviche_concha.png" alt="Ceviche de Concha">
+                <h4>Ceviche de Concha</h4>
+                <li>Ceviche oscuro y sabroso de conchas frescas, ideal para los amantes de los mariscos.</li>
+                <button class="add-to-cart" data-producto="Ceviche de Concha">Agregar al Carrito</button>
+            </div>
+            <div class="option">
+                <img src="img/ceviche_pescado.png" alt="Ceviche de Pescado">
+                <h4>Ceviche de Pescado</h4>
+                <li>Pescado fresco en jugo de limón con cebolla, tomate y cilantro, un clásico refrescante y lleno de sabor.</li>
+                <button class="add-to-cart" data-producto="Ceviche de Pescado">Agregar al Carrito</button>
+            </div>
+            <div class="option">
+                <img src="img/ceviche_cangrejo.png" alt="Ceviche de Cangrejo">
+                <h4>Ceviche de Cangrejo</h4>
+                <li>Exquisito ceviche de cangrejo fresco, marinado en limón y mezclado con cebolla, tomate y cilantro.</li>
+                <button class="add-to-cart" data-producto="Ceviche de Cangrejo">Agregar al Carrito</button>
+            </div>
+            <div class="option">
+                <img src="img/ceviche_pulpo.png" alt="Ceviche de Pulpo">
+                <h4>Ceviche de Pulpo</h4>
+                <li>Tierno pulpo marinado en limón y acompañado de cebolla y hierbas frescas para un toque único de mar.</li>
+                <button class="add-to-cart" data-producto="Ceviche de Pulpo">Agregar al Carrito</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>Email: info@platos-tips.com</p>
+                <p>Teléfono: +593 123 456 789</p>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos en Redes Sociales</h4>
+                <ul class="social-links">
+                    <li><a href="https://www.facebook.com/tuemprendimiento" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/tuemprendimiento" target="_blank">Instagram</a></li>
+                    <li><a href="https://www.twitter.com/tuemprendimiento" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <p>&copy; 2024 Platos Típicos de Ecuador. Todos los derechos reservados.</p>
+                <p><a href="politica-privacidad.html">Política de Privacidad</a></p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Función para actualizar la cuenta del carrito en la barra de navegación
+        function actualizarCarrito() {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const cartCountElement = document.getElementById('cart-count');
+            cartCountElement.textContent = carrito.length;
+        }
+
+        // Llamamos a la función para que la cuenta esté actualizada al cargar la página
+        actualizarCarrito();
+
+        // Función para agregar productos al carrito
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const producto = this.getAttribute('data-producto');
+                
+                // Obtener los productos del carrito del localStorage
+                let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+                // Agregar el nuevo producto
+                carrito.push(producto);
+
+                // Guardar de nuevo en localStorage
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+
+                // Actualizar la cuenta del carrito
+                actualizarCarrito();
+
+                alert(producto + " ha sido agregado al carrito.");
+            });
+        });
+    </script>
+</body>
+</html>

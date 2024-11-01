@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Platos Típicos del Ecuador</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>El Fogón Costeño - Información</h1>
+    </header>
+    <nav>
+        <a href="index.html" class="active">Info</a>
+        <a href="menu.html">Productos</a>
+        <a href="compras.html" class="cart-notification">Compras<span id="cart-count" class="notification-number">0</span></a>
+        <a href="sobre-nosotros.html">Sobre Nosotros</a>
+        <a href="contactanos.html">Contáctanos</a>
+    </nav>
+    <script>
+        // Función para actualizar la cuenta del carrito en la barra de navegación
+        function actualizarCarrito() {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const cartCountElement = document.getElementById('cart-count');
+            cartCountElement.textContent = carrito.length;
+        }
+
+        // Llamamos a la función para que la cuenta esté actualizada al cargar la página
+        actualizarCarrito();
+
+        // Función para agregar productos al carrito
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const producto = this.getAttribute('data-producto');
+                
+                // Obtener los productos del carrito del localStorage
+                let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+                // Agregar el nuevo producto
+                carrito.push(producto);
+
+                // Guardar de nuevo en localStorage
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+
+                // Actualizar la cuenta del carrito
+                actualizarCarrito();
+
+                alert(producto + " ha sido agregado al carrito.");
+            });
+        });
+    </script>
+    <div class="container">
+        <h2>Bienvenidos a Platos Típicos de Ecuador</h2>
+        <p>Ecuador es un país rico en cultura y tradición, y su gastronomía refleja esta diversidad. Desde la costa hasta la sierra, cada región ofrece sabores únicos y platos representativos que son un deleite para el paladar.</p>
+
+        <h3>¿Qué es Platos Típicos de Ecuador?</h3>
+        <p>Platos Típicos de Ecuador es un emprendimiento dedicado a la promoción y venta de la auténtica comida ecuatoriana. Nuestro objetivo es acercar a nuestros clientes a la riqueza culinaria del país, ofreciendo una variedad de platos que utilizan ingredientes frescos y locales.</p>
+
+        <h3>Nuestra Filosofía</h3>
+        <p>Creemos que la comida es una forma de conexión cultural. A través de cada bocado, queremos llevarte a un viaje a las diferentes regiones de Ecuador, donde la tradición se encuentra con la innovación. Cada plato que servimos es preparado con amor y respeto por las recetas tradicionales, honrando a nuestros antepasados y su legado culinario.</p>
+
+        <h3>¿Por qué Elegirnos?</h3>
+        <ul>
+            <li><strong>Autenticidad:</strong> Nuestros platos son elaborados siguiendo recetas tradicionales que han sido transmitidas de generación en generación.</li>
+            <li><strong>Calidad:</strong> Utilizamos ingredientes frescos y locales, garantizando un sabor excepcional en cada bocado.</li>
+            <li><strong>Variedad:</strong> Ofrecemos una amplia gama de platos típicos, desde ceviche y llapingachos hasta fritada y hornado, para que puedas disfrutar de lo mejor de nuestra gastronomía.</li>
+            <li><strong>Compromiso:</strong> Estamos comprometidos con la sostenibilidad y el apoyo a los productores locales, asegurando que cada compra contribuya al bienestar de nuestra comunidad.</li>
+        </ul>
+
+        <h3>Únete a Nuestra Comunidad</h3>
+        <p>Te invitamos a seguirnos en nuestras redes sociales y suscribirte a nuestro boletín para recibir actualizaciones sobre nuevos platos, ofertas especiales y eventos. Comparte con nosotros tus experiencias y recetas favoritas, y sé parte de nuestra familia de amantes de la buena comida.</p>
+
+        <div class="platos-options">
+            <h3>Explora Nuestros Platos Típicos de la Costa</h3>
+            <div class="options-container">
+                <div class="option">
+                    <a href="menu.html?plato=ceviche">
+                        <img src="img/ceviche_camaron.png" alt="Ceviche">
+                        <h4>Ceviches</h4>
+                    </a>
+                </div>
+                <div class="option">
+                    <a href="menu.html?plato=encocado">
+                        <img src="img/encebollado.png" alt="Encebollado">
+                        <h4>Encebollado</h4>
+                    </a>
+                </div>
+                <div class="option">
+                    <a href="menu.html?plato=bolon">
+                        <img src="img/bolon_verde.png" alt="Bolón de Verde">
+                        <h4>Bolón de Verde</h4>
+                    </a>
+                </div>
+                <div class="option">
+                    <a href="menu.html?plato=Cangrejada">
+                        <img src="img/cangrejada.png" alt="Cangrejada">
+                        <h4>Cangrejada</h4>
+                    </a>
+                </div>
+            </div>
+            <a class="explore-button" href="menu.html">Explorar Más</a>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>Email: info@platos-tips.com</p>
+                <p>Teléfono: +593 123 456 789</p>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos en Redes Sociales</h4>
+                <ul class="social-links">
+                    <li><a href="https://www.facebook.com/tuemprendimiento" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/tuemprendimiento" target="_blank">Instagram</a></li>
+                    <li><a href="https://www.twitter.com/tuemprendimiento" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <p>&copy; 2024 Platos Típicos de Ecuador. Todos los derechos reservados.</p>
+                <p><a href="politica-privacidad.html">Política de Privacidad</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

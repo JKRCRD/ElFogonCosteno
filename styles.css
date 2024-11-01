@@ -1,0 +1,379 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-image: url('img/fondo.png');
+    background-size: cover;      
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+}
+
+header {
+    background-color: rgba(0, 102, 0, 0.8);
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+nav {
+    margin: 0; 
+    padding: 1em 0; /* Ajustado para que no tenga fondo */
+    text-align: center;
+}
+
+nav a.active {
+    background-color: black; /* Color de fondo negro */
+    color: white; /* Cambia el color del texto a blanco para que se vea mejor */
+    transition: background-color 0.3s; /* Animación suave */
+}
+
+nav a {
+    text-align: center;
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Cambiado a fondo blanco semi-transparente */
+    color: #333; /* Cambiado a color oscuro para mejor visibilidad */
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+h1 {
+    color: #ffffff;
+}
+
+h2 {
+    color: #333;
+}
+
+h3 {
+    text-align: center;
+    color: #333; /* Color del título del formulario */
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding: 2em;
+    margin: 2em auto;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#pedir-ya {
+    font-family: 'Times New Roman', Times, serif;
+    padding: 15px 30px;
+    background-color: #008080;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    width: 100px;
+    text-align: center;
+}
+
+#pedir-ya:hover {
+    background-color: #006666; /* Color al pasar el mouse */
+}
+
+html, body {
+    height: 100%; /* Asegura que el cuerpo y el html ocupen toda la altura de la ventana */
+    margin: 0; /* Elimina el margen predeterminado */
+    display: flex; /* Establece el modelo de caja flexible */
+    flex-direction: column; /* Organiza el contenido en una columna */
+}
+
+.container {
+    flex: 1; /* Permite que el contenedor principal ocupe el espacio restante */
+    padding: 2em; /* Espaciado alrededor del contenido */
+}
+
+footer {
+    background-color: rgba(0, 102, 0, 0.8); /* Color de fondo del footer */
+    color: white; /* Color del texto */
+    text-align: center; /* Centra el texto del footer */
+    padding: 1em 0; /* Espaciado dentro del footer */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around; /* Distribuye las secciones en el espacio */
+    flex-wrap: wrap; /* Permite que las secciones se ajusten en múltiples líneas */
+}
+
+.footer-section {
+    margin: 1em; /* Espaciado entre secciones */
+}
+
+.social-links {
+    list-style-type: none; /* Elimina viñetas */
+    padding: 0; /* Elimina padding */
+}
+
+.social-links li {
+    display: inline; /* Enlaza elementos en línea */
+    margin: 0 10px; /* Espaciado horizontal */
+}
+
+.social-links a {
+    color: white; /* Color de los enlaces */
+    text-decoration: none; /* Elimina subrayado */
+}
+
+.social-links a:hover {
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+.platos-options {
+    margin: 2em auto;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.options-container {
+    display: flex; /* Usar flexbox para alinear los recuadros */
+    justify-content: center; /* Centra los recuadros horizontalmente */
+    flex-wrap: wrap; /* Permite que los recuadros se ajusten si hay poco espacio */
+    gap: 20px; /* Espacio entre los recuadros */
+}
+
+.option {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo del recuadro */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra para efecto de profundidad */
+    margin: 1em; /* Espacio alrededor de cada recuadro */
+    text-align: center; /* Centra el texto dentro del recuadro */
+    border: 1px solid #ccc;
+    width: 30%; /* Ancho del recuadro (ajusta según sea necesario) */
+    padding: 10px;
+    transition: transform 0.2s;
+}
+
+.option img {
+    width: 100%; /* Imagen ocupa todo el ancho del recuadro */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-top-left-radius: 10px; /* Redondea la esquina superior izquierda */
+    border-top-right-radius: 10px; /* Redondea la esquina superior derecha */
+}
+
+.option h4 {
+    margin: 0.5em 0; /* Espaciado arriba y abajo del título */
+}
+
+.option:hover {
+    transform: scale(1.05); /* Efecto de aumento al pasar el mouse */
+}
+
+.explore-button {
+    display: inline-block; /* Hace que el botón sea un bloque en línea */
+    margin: 20px auto; /* Margen automático para centrar */
+    padding: 10px 20px; /* Espaciado dentro del botón */
+    background-color: rgba(0, 102, 0, 0.8); /* Color de fondo del botón */
+    color: white; /* Color del texto */
+    text-decoration: none; /* Elimina subrayado */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+}
+
+.explore-button:hover {
+    background-color: rgba(0, 102, 0, 1); /* Color al pasar el mouse */
+}
+
+.options-container {
+    display: flex; /* Usar flexbox para alinear los recuadros */
+    justify-content: space-evenly; /* Espacio entre recuadros */
+    flex-wrap: wrap; /* Permite que los recuadros se ajusten si hay poco espacio */
+    margin: 2em auto;
+    text-align: center;
+}
+
+.option {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo del recuadro */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra para efecto de profundidad */
+    margin: 1em; /* Espacio alrededor de cada recuadro */
+    text-align: center; /* Centra el texto dentro del recuadro */
+    border: 1px solid #ccc;
+    width: 20%; /* Ancho del recuadro (ajusta según sea necesario) */
+    padding: 10px;
+    transition: transform 0.2s;
+}
+
+.option img {
+    width: 100%; /* Imagen ocupa todo el ancho del recuadro */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-top-left-radius: 10px; /* Redondea la esquina superior izquierda */
+    border-top-right-radius: 10px; /* Redondea la esquina superior derecha */
+}
+
+.option h4 {
+    margin: 1em 0; /* Espaciado arriba y abajo del título */
+}
+
+.add-to-cart {
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 10px; /* Espacio superior para el botón */
+    padding: 10px 20px; /* Espaciado dentro del botón */
+    background-color: rgba(0, 102, 0, 0.8); /* Color de fondo del botón */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+}
+
+.add-to-cart:hover {
+    background-color: rgb(0, 0, 0); /* Color al pasar el mouse */
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    width: 100%; /* Añade un ancho fijo para evitar movimiento */
+}
+
+.cart-item img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.cart-item-info {
+    flex-grow: 1;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cantidad-input {
+    width: 40px;
+    text-align: center;
+}
+
+/* Estilo para la cantidad de producto en el carrito */
+.cart-item-controls input[type="text"] {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border: 2px solid #008080; /* Color del borde */
+    border-radius: 10px; /* Bordes redondeados */
+    font-size: 16px;
+    font-weight: bold;
+    color: #333; /* Color del texto */
+    background-color: #f0f8ff; /* Color de fondo */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar efecto de profundidad */
+    transition: 0.3s ease;
+}
+
+.cart-item-controls input[type="text"]:hover {
+    border-color: #004d4d; /* Cambiar el color del borde al pasar el mouse */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
+}
+
+.cart-item-controls button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    background-color: rgba(0, 102, 0, 0.8);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.cart-item-controls button:hover {
+    background-color: rgba(0, 102, 0, 1);
+}
+
+.cart-item-quantity {
+    padding: 5px;
+    width: 30px;
+    text-align: center;
+}
+
+/* Estilos para la notificación tipo Instagram */
+.cart-notification {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-notification .notification-number {
+    position: absolute;
+    top: -10px; /* Ajusta la posición superior del círculo */
+    right: -10px; /* Ajusta la posición derecha del círculo */
+    background-color: red;
+    color: white;
+    padding: 5px 8px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column; /* Apila los elementos en columna */
+    margin-top: 1em; /* Espaciado superior */
+}
+
+
+label {
+    margin-bottom: 0.5em; /* Espaciado inferior para las etiquetas */
+    font-weight: bold; /* Destaca las etiquetas */
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    padding: 0.5em; /* Espaciado interno */
+    margin-bottom: 1em; /* Espaciado inferior */
+    border: 1px solid #ccc; /* Borde gris */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente */
+    width: 100%; /* Ancho completo */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    font-family: 'Times New Roman', Times, serif;
+}
+
+textarea {
+    resize: vertical; /* Permitir cambio de tamaño verticalmente */
+    height: 100px; /* Altura fija */
+}
+
+button[type="submit"] {
+    padding: 10px; /* Espaciado interno */
+    background-color: #008080; /* Color de fondo del botón */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+}
+
+button[type="submit"]:hover {
+    background-color: #006666; /* Color al pasar el mouse */
+}

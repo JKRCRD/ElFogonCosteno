@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Compras</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>El Fogón Costeño - Compras</h1>
+    </header>
+    <nav>
+        <a href="index.html">Info</a>
+        <a href="menu.html">Productos</a>
+        <a href="compras.html" class="cart-notification active">Compras <span id="cart-count" class="notification-number">0</span></a>
+        <a href="sobre-nosotros.html">Sobre Nosotros</a>
+        <a href="contactanos.html">Contáctanos</a>
+    </nav>
+    <div class="container">
+        <h2>Tu Carrito de Compras</h2>
+        <div id="carrito-lista">
+            <!-- Aquí se mostrarán los productos a los que usted haya seleccionado para comprar -->
+        </div>
+        <button id="pedir-ya" style="display:none;">Pedir Ya</button>
+    </div>
+    <script>
+        const productos = {
+            "Ceviche de Camaron": "img/ceviche_camaron.png",
+            "Encebollado": "img/encebollado.png",
+            "Bolón de Verde": "img/bolon_verde.png",
+            "Tigrillo": "img/tigrillo.png",
+            "Crema de Cangrejo": "img/crema-de-cangrejos.png",
+            "Ceviche de Concha": "img/ceviche_concha.png",
+            "Ceviche de Pescado": "img/ceviche_pescado.png",
+            "Ceviche de Cangrejo": "img/ceviche_cangrejo.png",
+            "Ceviche de Pulpo": "img/ceviche_pulpo.png",
+            "Chivo de Pescado": "img/chivo_pescado.png",
+            "Corviche": "img/corviche.png",
+            "Caldo de Bola": "img/caldo_de_bola.png",
+            "Cangrejada": "img/cangrejada.png",
+            "Bollo de Pescado": "img/bollo_pescado.png",
+        };
+
+        function actualizarCarrito() {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const cartCountElement = document.getElementById('cart-count');
+            const carritoRevisado = localStorage.getItem('carritoRevisado');
+
+            if (carritoRevisado === 'true') {
+                cartCountElement.style.display = 'none'; // Oculta el contador si ya se ha revisado
+            } else {
+                cartCountElement.textContent = carrito.length;
+            }
+        }
+
+        function renderizarCarrito() {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const carritoLista = document.getElementById('carrito-lista');
+            const pedirYaButton = document.getElementById('pedir-ya');
+            carritoLista.innerHTML = "";
+
+            if (carrito.length > 0) {
+                pedirYaButton.style.display = 'block';
+                const carritoAgrupado = carrito.reduce((acc, producto) => {
+                    if (!acc[producto]) acc[producto] = 1;
+                    else acc[producto]++;
+                    return acc;
+                }, {});
+
+                for (let producto in carritoAgrupado) {
+                    const cantidad = carritoAgrupado[producto];
+                    const imagen = productos[producto] || 'img/default.png';
+
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item');
+                    cartItem.innerHTML = `
+                        <img src="${imagen}" alt="${producto}">
+                        <div class="cart-item-info">
+                            <h4>${producto}</h4>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="decrement" data-producto="${producto}">-</button>
+                            <input type="text" value="${cantidad}" class="cantidad-input" data-producto="${producto}">
+                            <button class="increment" data-producto="${producto}">+</button>
+                            <button class="eliminar" data-producto="${producto}">Eliminar</button>
+                        </div>
+                    `;
+                    carritoLista.appendChild(cartItem);
+                }
+
+                // Aquí asignamos eventos a los botones y entradas, como antes
+                document.querySelectorAll('.increment').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const producto = this.getAttribute('data-producto');
+                        const input = document.querySelector(`.cantidad-input[data-producto="${producto}"]`);
+                        const cantidad = parseInt(input.value) || 0;
+                        actualizarCantidadManual(producto, cantidad + 1);
+                    });
+                });
+
+                document.querySelectorAll('.decrement').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const producto = this.getAttribute('data-producto');
+                        const input = document.querySelector(`.cantidad-input[data-producto="${producto}"]`);
+                        const cantidad = parseInt(input.value) || 0;
+                        actualizarCantidadManual(producto, Math.max(cantidad - 1, 0));
+                    });
+                });
+
+                document.querySelectorAll('.eliminar').forEach(button => {
+                    button.addEventListener('click', function() {
+                        eliminarProducto(this.getAttribute('data-producto'));
+                    });
+                });
+
+                document.querySelectorAll('.cantidad-input').forEach(input => {
+                    input.addEventListener('input', function() {
+                        this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2);
+                        if (this.value > 99) this.value = 99;
+                    });
+
+                    input.addEventListener('blur', function() {
+                        if (this.value === "") this.value = 0;
+                        const producto = this.getAttribute('data-producto');
+                        actualizarCantidadManual(producto, parseInt(this.value));
+                    });
+                });
+            } else {
+                carritoLista.textContent = "Aquí se mostrarán los productos que hayas agregado al carrito ¿ok?";
+                pedirYaButton.style.display = 'none';
+            }
+
+            localStorage.setItem('carritoRevisado', 'true');
+            actualizarCarrito();
+        }
+
+
+        function modificarCantidad(producto, cambio) {
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            if (cambio === 1) carrito.push(producto);
+            else if (cambio === -1) {
+                const index = carrito.indexOf(producto);
+                if (index > -1) carrito.splice(index, 1);
+            }
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            renderizarCarrito();
+            actualizarCarrito();
+        }
+
+        function eliminarProducto(producto) {
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            carrito = carrito.filter(item => item !== producto);
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            renderizarCarrito();
+            actualizarCarrito();
+        }
+
+        function actualizarCantidadManual(producto, nuevaCantidad) {
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            carrito = carrito.filter(item => item !== producto);
+            for (let i = 0; i < nuevaCantidad; i++) carrito.push(producto);
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            renderizarCarrito();
+            actualizarCarrito();
+        }
+
+        actualizarCarrito();
+        renderizarCarrito();
+    </script>
+</body>
+</html>

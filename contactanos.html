@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contáctanos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>El Fogón Costeño - Contáctanos</h1>
+    </header>
+    <nav>
+        <a href="index.html">Info</a>
+        <a href="menu.html">Productos</a>
+        <a href="compras.html" class="cart-notification">Compras<span id="cart-count" class="notification-number">0</span></a>
+        <a href="sobre-nosotros.html">Sobre Nosotros</a>
+        <a href="contactanos.html" class="active">Contáctanos</a>
+    </nav>
+    <script>
+        // Función para actualizar la cuenta del carrito en la barra de navegación
+        function actualizarCarrito() {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const cartCountElement = document.getElementById('cart-count');
+            cartCountElement.textContent = carrito.length;
+        }
+
+        // Llamamos a la función para que la cuenta esté actualizada al cargar la página
+        actualizarCarrito();
+
+        // Función para agregar productos al carrito
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const producto = this.getAttribute('data-producto');
+                
+                // Obtener los productos del carrito del localStorage
+                let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+                // Agregar el nuevo producto
+                carrito.push(producto);
+
+                // Guardar de nuevo en localStorage
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+
+                // Actualizar la cuenta del carrito
+                actualizarCarrito();
+
+                alert(producto + " ha sido agregado al carrito.");
+            });
+        });
+    </script>
+    <div class="container">
+        <h2>Ponte en Contacto</h2>
+        <p>¿Tienes alguna pregunta o quieres realizar un pedido? Contáctanos a través de los siguientes medios:</p>
+        <ul>
+            <li>Teléfono: +593 123 456 789</li>
+            <li>Email: info@platosdelcuador.com</li>
+            <li>Dirección: Calle Ejemplo #123, Quito, Ecuador</li>
+        </ul>
+
+        <h3>Formulario de Contacto</h3>
+        <form id="contact-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" required></textarea>
+            </div>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <script>
+        // Manejar el envío del formulario
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Gracias por tu mensaje, nos pondremos en contacto contigo pronto.');
+            this.reset(); // Limpiar el formulario después de enviar
+        });
+    </script>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>Email: info@platos-tips.com</p>
+                <p>Teléfono: +593 123 456 789</p>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos en Redes Sociales</h4>
+                <ul class="social-links">
+                    <li><a href="https://www.facebook.com/tuemprendimiento" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/tuemprendimiento" target="_blank">Instagram</a></li>
+                    <li><a href="https://www.twitter.com/tuemprendimiento" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <p>&copy; 2024 Platos Típicos de Ecuador. Todos los derechos reservados.</p>
+                <p><a href="politica-privacidad.html">Política de Privacidad</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
